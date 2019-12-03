@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Str;
-$DATABASE_URL=parse_url("postgres://pamngdmaxoqweg:a915da640486a6ca7b7fc2c33af9c9076f5e41499a07818d7f233aa01f323b33@ec2-174-129-255-91.compute-1.amazonaws.com:5432/da28hihklqik58");
+$DATABASE_URL=parse_url(getenv("mysql://bed80967e8a60d:60f5e984@us-cdbr-iron-east-05.cleardb.net/heroku_9ee4fdffa2def9c?reconnect=true"));
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
 return [
 
     /*
@@ -15,7 +19,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'your_heroku_mysql_connection'),
 
     /*
     |--------------------------------------------------------------------------
@@ -62,6 +66,18 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+        
+        
+        'your_heroku_mysql_connection' => array(
+    'driver' => 'mysql',
+    'host' => $host,
+    'database' => $database,
+    'username' => $username,
+    'password' => $password,
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+),
 
         'pgsql' => [
             'driver' => 'pgsql',
