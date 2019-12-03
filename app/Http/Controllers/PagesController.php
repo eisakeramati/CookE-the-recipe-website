@@ -24,7 +24,7 @@ class PagesController extends Controller
     }
 
     public function summary(){
-        return view('pages.summary');
+        return view('pages.Summary');
     }
     public function tutorial(){
         return view('pages.tutorial');
